@@ -37,7 +37,7 @@ GO
 
 CREATE TABLE [dbo].[Orders](
 	[order_id] [int] IDENTITY(1000,1) NOT NULL,
-	[order_date] [datetime] DEFAULT GETDATE(),
+	[order_date] [datetime] NOT NULL DEFAULT GETDATE(),
 	[customer_name] [varchar] (25) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -47,10 +47,7 @@ PRIMARY KEY CLUSTERED
 
 GO
 
-CREATE UNIQUE INDEX [UIX_Orders_CustomerName] ON [dbo].[Orders] ([customer_name])
-GO
-
-CREATE NONCLUSTERED INDEX [IX_Orders] ON [dbo].[Orders] ([order_date])
+CREATE NONCLUSTERED INDEX [IX_Orders] ON [dbo].[Orders] ([order_date],[customer_name])
 GO
 
 
@@ -84,10 +81,10 @@ PRIMARY KEY CLUSTERED
 
 GO
 
-CREATE UNIQUE INDEX [UIX_Products_ProductName] ON [dbo].[Products] ([product_name])
+CREATE UNIQUE INDEX [UIX_Products_ProductName_CategoryId] ON [dbo].[Products] ([product_name],[category_id])
 GO
 
-CREATE NONCLUSTERED INDEX [IX_Products] ON [dbo].[Products] ([category_id],[price],[description],[image_url],[date_added] ASC)
+CREATE NONCLUSTERED INDEX [IX_Products] ON [dbo].[Products] ([category_id],[product_name],[price],[description],[image_url],[date_added] ASC)
 GO
 
 SET ANSI_PADDING OFF
