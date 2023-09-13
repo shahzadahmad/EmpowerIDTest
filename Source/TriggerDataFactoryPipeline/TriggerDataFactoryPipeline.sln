@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33927.289
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriggerDataFactoryPipeline", "TriggerDataFactoryPipeline\TriggerDataFactoryPipeline.csproj", "{AEEDE9FD-8AB9-403C-A59A-0869A9CB75EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEEDE9FD-8AB9-403C-A59A-0869A9CB75EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEDE9FD-8AB9-403C-A59A-0869A9CB75EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEDE9FD-8AB9-403C-A59A-0869A9CB75EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEDE9FD-8AB9-403C-A59A-0869A9CB75EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D45A723-2016-475E-94EE-404F2C3128FD}
+	EndGlobalSection
+EndGlobal
