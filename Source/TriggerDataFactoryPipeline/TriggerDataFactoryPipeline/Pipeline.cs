@@ -60,18 +60,20 @@ namespace TriggerDataFactoryPipeline
                         break;
                 }
 
-                // Check the Copy Activity Run Details  
-                Console.WriteLine("Checking copy activity run details...");
+                // Check the Cognitive Search Index Update Activity Run Details  
+                Console.WriteLine("Checking cognitive index update activity run details...");
                 if (pipelineRun.Status == "Succeeded")
                 {
-                    Console.WriteLine("Copy Activity Succeeded!");
+                    Console.WriteLine("Cognitive Search - Index Update Activity Succeeded!");
                 }
                 else
                 {
-                    Console.WriteLine("Copy Activity Failed!");
+                    Console.WriteLine("Cognitive Search - Index Update Activity Failed!");
                 }
                 Console.WriteLine("\nPress any key to exit...");
                 Console.ReadKey();
+
+
             }
             catch (Exception ex)
             {
