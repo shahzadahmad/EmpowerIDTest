@@ -3,6 +3,7 @@ using Microsoft.Azure.Management.DataFactory.Models;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.Rest;
 using System;
+using System.Configuration;
 
 namespace TriggerDataFactoryPipeline
 {
@@ -10,12 +11,12 @@ namespace TriggerDataFactoryPipeline
     {
         public IDataFactoryManagementClient client;
 
-        private string applicationId = "4d0ff30d-bcdd-449b-9eeb-c06d93fe8961";
-        private string clientSecret = "nvN8Q~SByqgEVlJuskc2gJdNUKyJLtOHACGMyboc";
-        private string subscriptionId = "b19f4ee4-a01e-4706-8a8c-96558113ac54";
-        private string tenantID = "1363ebc4-b673-4c1d-b408-71fb8624a0d1";
-        private readonly string activeDirectoryEndpoint = "https://login.windows.net/";
-        private readonly string windowsManagementUri = "https://management.core.windows.net/";
+        private string applicationId = ConfigurationManager.AppSettings["applicationId"];
+        private string clientSecret = ConfigurationManager.AppSettings["clientSecret"];
+        private string subscriptionId = ConfigurationManager.AppSettings["subscriptionId"];
+        private string tenantID = ConfigurationManager.AppSettings["tenantID"];
+        private readonly string activeDirectoryEndpoint = ConfigurationManager.AppSettings["activeDirectoryEndpoint"];
+        private readonly string windowsManagementUri = ConfigurationManager.AppSettings["windowsManagementUri"];
 
         public void create_adf_client()
         {
@@ -60,20 +61,19 @@ namespace TriggerDataFactoryPipeline
                         break;
                 }
 
-                // Check the Cognitive Search Index Update Activity Run Details  
-                Console.WriteLine("Checking cognitive index update activity run details...");
+                // Check the Cognitive Search Data Update Activity Run Details  
+                Console.WriteLine("Checking cognitive search data update activity run details...");
                 if (pipelineRun.Status == "Succeeded")
                 {
-                    Console.WriteLine("Cognitive Search - Index Update Activity Succeeded!");
+                    Console.WriteLine("Cognitive Search Data Update Activity Succeeded!");
                 }
                 else
                 {
-                    Console.WriteLine("Cognitive Search - Index Update Activity Failed!");
+                    Console.WriteLine("Cognitive Search Data Update Activity Failed!");
                 }
-                Console.WriteLine("\nPress any key to exit...");
+
+                Console.WriteLine("\nPress any key to continue search item...");
                 Console.ReadKey();
-
-
             }
             catch (Exception ex)
             {
