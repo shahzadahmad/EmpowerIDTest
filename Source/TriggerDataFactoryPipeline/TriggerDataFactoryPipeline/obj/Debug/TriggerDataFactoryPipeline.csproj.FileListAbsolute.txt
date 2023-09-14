@@ -23,3 +23,5 @@ D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\Trigg
 D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\obj\Debug\TriggerDataFactoryPipeline.csproj.CopyComplete
 D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\obj\Debug\TriggerDataFactoryPipeline.exe
 D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\obj\Debug\TriggerDataFactoryPipeline.pdb
+D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
