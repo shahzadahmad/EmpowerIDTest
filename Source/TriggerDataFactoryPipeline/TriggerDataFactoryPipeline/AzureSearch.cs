@@ -11,6 +11,11 @@ namespace TriggerDataFactoryPipeline
 {
     public class AzureSearch
     {
+        /// <summary>
+        /// Method to search query into Cognitive Serach index.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<string>> Search(string query)
         {
             SearchClient searchClient = CreateSearchClientForQueries(ConfigurationManager.AppSettings["searchIndexName"]);
@@ -32,6 +37,11 @@ namespace TriggerDataFactoryPipeline
             return documents;
         }
 
+        /// <summary>
+        /// Method to create search client object.
+        /// </summary>
+        /// <param name="indexName"></param>
+        /// <returns></returns>
         private static SearchClient CreateSearchClientForQueries(string indexName)
         {
             string searchServiceEndPoint = ConfigurationManager.AppSettings["searchServiceEndPoint"];

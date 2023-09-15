@@ -9,8 +9,19 @@ namespace TriggerDataFactoryPipeline
 {
     class pipeline
     {
+        /// <summary>
+        /// data member
+        /// </summary>
         public IDataFactoryManagementClient client;
 
+        /// <summary>
+        /// Logger variable
+        /// </summary>
+        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+        /// <summary>
+        /// configuration variables
+        /// </summary>
         private string applicationId = ConfigurationManager.AppSettings["applicationId"];
         private string clientSecret = ConfigurationManager.AppSettings["clientSecret"];
         private string subscriptionId = ConfigurationManager.AppSettings["subscriptionId"];
@@ -18,32 +29,53 @@ namespace TriggerDataFactoryPipeline
         private readonly string activeDirectoryEndpoint = ConfigurationManager.AppSettings["activeDirectoryEndpoint"];
         private readonly string windowsManagementUri = ConfigurationManager.AppSettings["windowsManagementUri"];
 
-        public void create_adf_client()
-        {
-            // Authenticate and create a data factory management client
-            var authority = new Uri(new Uri(activeDirectoryEndpoint), this.tenantID);
-            var authenticationContext = new AuthenticationContext(authority.AbsoluteUri);
-            var clientCredential = new ClientCredential(applicationId, clientSecret);
-            
-            var result = authenticationContext.AcquireTokenAsync(windowsManagementUri, clientCredential).Result;            
-
-            var cred = new TokenCredentials(result.AccessToken);
-            client = new DataFactoryManagementClient(cred)
-            {
-                SubscriptionId = subscriptionId
-            };
-        }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public pipeline()
         {
             create_adf_client();
         }
 
+        /// <summary>
+        /// creating ADF client.
+        /// </summary>
+        public void create_adf_client()
+        {
+            try
+            {
+                // Authenticate and create a data factory management client
+                var authority = new Uri(new Uri(activeDirectoryEndpoint), this.tenantID);
+                var authenticationContext = new AuthenticationContext(authority.AbsoluteUri);
+                var clientCredential = new ClientCredential(applicationId, clientSecret);
+
+                var result = authenticationContext.AcquireTokenAsync(windowsManagementUri, clientCredential).Result;
+
+                var cred = new TokenCredentials(result.AccessToken);
+                client = new DataFactoryManagementClient(cred)
+                {
+                    SubscriptionId = subscriptionId
+                };
+            }
+            catch
+            {                
+                throw;
+            }
+        }        
+
+        /// <summary>
+        /// Method to run ADF pipeline activity.
+        /// </summary>
+        /// <param name="resourceGroup"></param>
+        /// <param name="dataFactoryName"></param>
+        /// <param name="pipelineName"></param>
         public void StartPipeline(string resourceGroup, string dataFactoryName, string pipelineName)
         {
             try
             {
                 // Create a Pipeline Run  
+                Console.WriteLine("Product Cognitive Search - Refreshing Data Activity");
+                Console.WriteLine("======================================================");
                 Console.WriteLine("Creating pipeline run...");
                 var runResponse = client.Pipelines.CreateRunWithHttpMessagesAsync(resourceGroup, dataFactoryName, pipelineName).Result.Body;
                 Console.WriteLine("Pipeline run ID: " + runResponse.RunId);
@@ -72,12 +104,11 @@ namespace TriggerDataFactoryPipeline
                     Console.WriteLine("Cognitive Search Data Update Activity Failed!");
                 }
 
-                Console.WriteLine("\nPress any key to continue search item...");
+                Console.WriteLine("\nPress any key to continue search activity...");
                 Console.ReadKey();
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+            catch
+            {                
                 throw;
             }
         }

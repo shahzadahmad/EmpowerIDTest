@@ -53,3 +53,6 @@ D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\Trigg
 D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\System.Threading.Channels.xml
 D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\System.ValueTuple.xml
+D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\NLog.config
+D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\NLog.dll
+D:\Projects\EmpowerID-TEST\EmpowerIDTest\Source\TriggerDataFactoryPipeline\TriggerDataFactoryPipeline\bin\Debug\NLog.xml
