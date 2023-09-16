@@ -26,12 +26,12 @@ namespace TriggerDataFactoryPipeline
                 //Search for products using all available parameters.
                 Console.WriteLine("\n");
                 Console.WriteLine("Product Search - The search method for products allows the user to search using all available parameters");
-                Console.WriteLine("--------------------------------------------------------------------------------------------------------");                
+                Console.WriteLine("--------------------------------------------------------------------------------------------------------");
                 Console.WriteLine("Please enter your search query:");
                 string searchQuery = Console.ReadLine();
 
-                 Console.WriteLine("\n");
-                Console.WriteLine("Generating Search Result...\n");                
+                Console.WriteLine("\n");
+                Console.WriteLine("Generating Search Result...\n");
 
                 var result = new AzureSearch().Search(searchQuery).Result;
                 foreach (var r in result)

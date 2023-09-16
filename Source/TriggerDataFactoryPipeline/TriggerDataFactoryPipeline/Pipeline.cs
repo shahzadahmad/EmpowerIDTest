@@ -17,7 +17,7 @@ namespace TriggerDataFactoryPipeline
         /// <summary>
         /// Logger variable
         /// </summary>
-        private static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// configuration variables
@@ -76,17 +76,17 @@ namespace TriggerDataFactoryPipeline
                 // Create a Pipeline Run  
                 Console.WriteLine("Product Cognitive Search - Refreshing Data Activity");
                 Console.WriteLine("======================================================");
-                Console.WriteLine("Creating pipeline run...");
+                logger.Info("Creating pipeline run...");
                 var runResponse = client.Pipelines.CreateRunWithHttpMessagesAsync(resourceGroup, dataFactoryName, pipelineName).Result.Body;
-                Console.WriteLine("Pipeline run ID: " + runResponse.RunId);
+                logger.Info("Pipeline run ID: " + runResponse.RunId);
 
                 // Monitor the Pipeline Run  
-                Console.WriteLine("Checking Pipeline Run Status...");
+                logger.Info("Checking Pipeline Run Status...");
                 PipelineRun pipelineRun;
                 while (true)
                 {
                     pipelineRun = client.PipelineRuns.Get(resourceGroup, dataFactoryName, runResponse.RunId);
-                    Console.WriteLine("Status: " + pipelineRun.Status);
+                    logger.Info("Status: " + pipelineRun.Status);
                     if (pipelineRun.Status == "InProgress")
                         System.Threading.Thread.Sleep(15000);
                     else
@@ -94,14 +94,14 @@ namespace TriggerDataFactoryPipeline
                 }
 
                 // Check the Cognitive Search Data Update Activity Run Details  
-                Console.WriteLine("Checking cognitive search data update activity run details...");
+                logger.Info("Checking cognitive search data update activity run details...");
                 if (pipelineRun.Status == "Succeeded")
                 {
-                    Console.WriteLine("Cognitive Search Data Update Activity Succeeded!");
+                    logger.Info("Cognitive Search Data Update Activity Succeeded!");
                 }
                 else
                 {
-                    Console.WriteLine("Cognitive Search Data Update Activity Failed!");
+                    logger.Info("Cognitive Search Data Update Activity Failed!");
                 }
 
                 Console.WriteLine("\nPress any key to continue search activity...");
